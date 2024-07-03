@@ -11,16 +11,18 @@
     />
     <title>My Weather App</title>
     <link rel="stylesheet" href="index.css" />
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
   </head>
   <body>
     <div class="weather-app">
       <header>
-        <form class="search-form">
+        <form class="search-form" id="search-form">
           <input
             type="search"
             placeholder="Please, enter a city name"
             required
             class="search-form-input"
+            id="search-input"
           />
           <input type="submit" value="Search" class="search-form-button" />
         </form>
@@ -28,16 +30,16 @@
       <main>
         <div class="wheather-app-main-data">
           <div class="wheather-app-main">
-            <h1 class="wheather-app-city">Pinhal Novo</h1>
+            <h1 class="wheather-app-city" id="current-city"></h1>
             <div class="wheather-app-details" id="p-texto">
-              Saturday 15:32 , moderate rain <br />
+              <span id="current-date"></span>, moderate rain <br />
               Humidity: <span id="humidity">87%</span>, Wind:
               <span id="wind">7.2km/h</span>
             </div>
           </div>
           <div class="actual">
             <div class="wheather-app-icon">☀️</div>
-            <div class="wheather-app-temp">14</div>
+            <div class="wheather-app-temp" id="current-temp"></div>
             <div class="wheather-app-unit">°C</div>
           </div>
         </div>
@@ -58,5 +60,6 @@
         >
       </footer>
     </div>
+    <script src="index.js"></script>
   </body>
 </html>
