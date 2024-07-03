@@ -9,17 +9,33 @@ function search(event) {
 
   let apiKey = "634534df08f99d8a1bo3c3538aat8763";
   let units = "metric";
-  let url =
-    "https://api.shecodes.io/weather/v1/current?query=${cityElement.textContent}&key=${apiKey}";
+  let url = `https://api.shecodes.io/weather/v1/current?query=${cityElement.textContent}&key=${apiKey}`;
 
   axios.get(url).then(workResponse);
 
-  /* 1.1.3 - Função para ir buscar a temp actual à string de resposta da API */
+  /* 1.1.3 - Função para ir buscar info à string de resposta da API */
   function workResponse(response) {
+    console.log(response);
     let fullData = response.data;
+    /* Temperatura */
     let current = Math.round(fullData.temperature.current);
     let newTemp = document.querySelector("#current-temp");
     newTemp.innerHTML = current;
+    /* Descrição */
+    let actuald = fullData.condition.description;
+    let newDesc = document.querySelector("#description");
+    newDesc.innerHTML = actuald;
+    /* Humidade */
+    let percentage = fullData.temperature.humidity;
+    let hpercentage = document.querySelector("#humidity");
+    hpercentage.innerHTML = percentage + " %";
+    /* Vento */
+    let wspeed = fullData.wind.speed;
+    let windSpeed = document.querySelector("#wind");
+    windSpeed.innerHTML = wspeed + " km/h";
+    /* Icon */
+    let iconElement = document.querySelector("#current-icon");
+    iconElement.innerHTML = `<img src="${fullData.condition.icon_url}" />`;
   }
 }
 
